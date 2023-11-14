@@ -19,20 +19,7 @@ sudo createhomedir -c -u alone > /dev/null
 #git config --global user.name ""
 #git config --global user.email
 
-echo "install AMI_PEM key"
-curl $AMI_PEM | sudo tee /Users/alone/.ami.pem > /dev/null
-sudo chmod g-w,g-r /Users/alone/.ami.pem
-sudo chmod o-w,o-r /Users/alone/.ami.pem
-sudo chown alone /Users/alone/.ami.pem
 
-echo "Saving the aws_ec2 instance fingerprint"
-sudo mkdir /Users/alone/.ssh
-curl $AWS_EC2 | sudo tee /Users/alone/.ssh/known_hosts > /dev/null
-sudo chown alone /Users/alone/.ssh
-sudo chown alone /Users/alone/.ssh/known_hosts
-
-echo "save the backup source"
-echo "export BACKUP_SRC=$4" | sudo tee -a /Users/alone/.zshrc > /dev/null
 
 echo "initializing user session"
 sudo cp -rf ./init-user /Users/alone
